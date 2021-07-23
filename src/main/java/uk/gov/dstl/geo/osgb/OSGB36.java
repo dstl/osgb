@@ -24,16 +24,16 @@ import static uk.gov.dstl.geo.osgb.CartesianConversion.*;
  * https://www.ordnancesurvey.co.uk/documents/resources/guide-coordinate-systems-great-britain.pdf
  */
 public class OSGB36 {
-  private static double tX = -446.448;
-  private static double tY = 125.157;
-  private static double tZ = -542.060;
-  private static double s =
+  private static final double tX = -446.448;
+  private static final double tY = 125.157;
+  private static final double tZ = -542.060;
+  private static final double s =
       20.4894 / 1000000; // Value given by OS in ppm, so convert to a unitless quantity
-  private static double rX =
+  private static final double rX =
       -0.1502 * (Math.PI / 648000); // Value given by OS in arcseconds, so convert to radians
-  private static double rY =
+  private static final double rY =
       -0.2470 * (Math.PI / 648000); // Value given by OS in arcseconds, so convert to radians
-  private static double rZ =
+  private static final double rZ =
       -0.8421 * (Math.PI / 648000); // Value given by OS in arcseconds, so convert to radians
 
   private OSGB36() {
@@ -51,21 +51,21 @@ public class OSGB36 {
     double[] cartesian =
         fromLatLon(
             new double[] {lat, lon, 0},
-            Constants.ELLIPSOID_GRS80_MAJORAXIS,
-            Constants.ELLIPSOID_GRS80_MINORAXIS);
+            Constants.ELLIPSOID_AIRY1830_MAJORAXIS,
+            Constants.ELLIPSOID_AIRY1830_MINORAXIS);
     double[] transformed = helmertTransformation(cartesian, -tX, -tY, -tZ, -s, -rX, -rY, -rZ);
     double[] ret =
         toLatLon(
             transformed,
-            Constants.ELLIPSOID_AIRY1830_MAJORAXIS,
-            Constants.ELLIPSOID_AIRY1830_MINORAXIS,
+            Constants.ELLIPSOID_GRS80_MAJORAXIS,
+            Constants.ELLIPSOID_GRS80_MINORAXIS,
             0.00000001);
 
     return new double[] {ret[0], ret[1]};
   }
 
   /**
-   * Convert from WGS86 Lat Lon to OSBG.
+   * Convert from WGS86 Lat Lon to OSGB.
    *
    * @param lat Latitude in WGS84 coordinates
    * @param lon Longitude in WGS84 coordinates

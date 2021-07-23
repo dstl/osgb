@@ -31,7 +31,16 @@ public class OSGB36Test {
   public void testToWGS84() {
     double[] output = OSGB36.toWGS84(51.5, 0.116667);
 
-    assertEquals(51.500514, output[0], 0.01);
-    assertEquals(0.115033, output[1], 0.00001);
+    assertEquals(51.500514, output[0], 0.0001);
+    assertEquals(0.115033, output[1], 0.0001);
+  }
+
+  @Test
+  public void testToAndFromWGS84() {
+    double[] wgs84 = OSGB36.toWGS84(51.5, 0.116667);
+    double[] osgb = OSGB36.fromWGS84(wgs84[0], wgs84[1]);
+
+    assertEquals(51.5, osgb[0], 0.00001);
+    assertEquals(0.116667, osgb[1], 0.00001);
   }
 }

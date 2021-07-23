@@ -6,7 +6,7 @@
 
   <groupId>uk.gov.dstl.geo</groupId>
   <artifactId>osgb</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
 
   <name>OSGB</name>
   <description>Library for converting between OSGB and WGS84 coordinates</description>

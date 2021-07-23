@@ -30,8 +30,11 @@ public class NationalGrid {
      * Constructor to create a new GridSquare for the given reference, easting and northing
      *
      * @param reference
+     *  The reference of this grid square (e.g. SU)
      * @param easting
+     *  The easting of this grid square
      * @param northing
+     *  The northing of this grid square
      */
     public GridSquare(String reference, double easting, double northing) {
       this.reference = reference;
@@ -96,7 +99,7 @@ public class NationalGrid {
   private static final Map<String, GridSquare> GRID_SQUARES;
 
   static {
-    GRID_SQUARES = new HashMap<String, GridSquare>();
+    GRID_SQUARES = new HashMap<>();
 
     addGridSquare("SV", 0, 0);
     addGridSquare("SW", 1, 0);
@@ -233,8 +236,8 @@ public class NationalGrid {
 
     List<String> list = splitOnWhitespace(trimmed.substring(2));
 
-    Double n = null;
-    Double e = null;
+    Double n;
+    Double e;
     if (list.size() >= 2) {
       // Have two values so use them
       e = parseDoubleWithCoordPrecision(list.get(0));

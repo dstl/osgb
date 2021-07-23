@@ -51,7 +51,7 @@ public class NationalGridTest {
   public void testTo() {
     Optional<String> ng = NationalGrid.toNationalGrid(new double[] {E, N});
 
-    assertEquals(NG_EXPANDED, ng.get());
+    assertEquals(NG_EXPANDED, ng.orElseThrow());
   }
 
   @Test
@@ -80,7 +80,7 @@ public class NationalGridTest {
     assertEquals(exN, out[1], 0.001);
 
     Optional<String> ng = NationalGrid.toNationalGrid(new double[] {exE, exN});
-    assertCoordinateEquals(example, ng.get());
+    assertCoordinateEquals(example, ng.orElseThrow());
   }
 
   private void assertCoordinateEquals(String expected, String actual) {
@@ -120,11 +120,11 @@ public class NationalGridTest {
   }
 
   private String addZeroes(String s) {
-    String t = s;
+    StringBuilder t = new StringBuilder(s);
     while (t.length() < 5) {
-      t += "0";
+      t.append("0");
     }
 
-    return t;
+    return t.toString();
   }
 }
