@@ -36,4 +36,18 @@ For more example, refer to the unit tests.
     //Convert from LatLon (OSGB) to WGS84
     double[] latlonWGS84 = OSGB36.toWGS84(latlonOSGB38[0], latlonOSGB38[1]);
     
+## Building and Releasing
 
+To build this library, run the following Maven command:
+
+```
+mvn clean package
+```
+
+To release this library to Maven central, run the following command:
+
+```
+mvn deploy -P release
+```
+
+Then log in to Nexus Repository Manager, close the staging repository and then release.

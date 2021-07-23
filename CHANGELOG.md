@@ -7,7 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Version 1.0.3 - 2021-07-23
 
-### Changes
+### Added
+* Release profile to `pom.xml` to sign artifacts
+
+### Changed
 * Made constants in OSGB36 final
 
 ### Fixed
